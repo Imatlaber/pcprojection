@@ -1,0 +1,20 @@
+/* Copyright (c) AutoNavi - All Rights Reserved
+ * Author: shuo <shuo@alibaba-inc.com>
+ * description: time
+ */
+
+package had;
+
+struct elapsed_time_t
+{
+    int64_t ref_tstamp ;
+    string node_name ;
+    double node_delay ;
+    string sender ;
+}
+
+struct elapsed_time_list_t
+{
+    int32_t num_nodes ;
+    elapsed_time_t nodes[num_nodes] ;
+}

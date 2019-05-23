@@ -1,0 +1,5 @@
+#add_subdirectory(msgs)
+#add_subdirectory(trans_solver)
+add_subdirectory(segment_solver)
+add_subdirectory(pcl_viewer)
+add_subdirectory(adapters)

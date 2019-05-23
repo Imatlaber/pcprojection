@@ -1,0 +1,67 @@
+%YAML:1.0
+---
+export_mode: 0
+# ======================== Ground Truth =========================
+pitch: 18.
+roll: -30.
+x: 1.0000000000000001e-01
+y: 2.0000000000000001e-01
+yaw: 135.
+z: 1.
+# ======================== Initial Guess =========================
+pitch_init: 0.
+roll_init: 0.
+x_init: 0.
+y_init: 0.
+yaw_init: 0.
+z_init: 1.
+# ======================== Calibration Parameters ================
+calib_limit: 10.
+correspondence_randomness: 20.
+gicp_epsilon: 1.0000000000000001e-05
+max_iteration: 100.
+max_convergence_error: 2.0
+rotation_epsilon: 1.0000000000000001e-05
+rpy_only: 0.
+max_normal_diff: 0.5
+max_correspondence_distance: 5.0
+max_nearest_search: 10
+show_cloud_lidar: 0.
+show_cloud_world: 1.
+translation_epsilon: 1.0000000000000000e-03
+external_cov: 0.
+# ======================== Trajectory Parameters ==================
+angular_speed: 20.
+cloud_noise: 1
+traj_noise: 1
+moving_within_rev: 1
+max_turning_angle: 45.
+number_intervals: 90.
+pitch0: 0.
+radius: 5.
+roll0: 0.
+sampling_interval: 1.0000000000000001e-01
+x0: 10.
+y0: 15.
+yaw0: 135.
+z0: 1.
+# ======================== Scene Parameters  =======================
+scene:
+   -
+      mat: !!opencv-matrix
+         rows: 4
+         cols: 3
+         dt: d
+         data: [ 0., 0., 0., 20., 0., 0., 20., 20., 0., 0., 20., 0. ]
+   -
+      mat: !!opencv-matrix
+         rows: 4
+         cols: 3
+         dt: d
+         data: [ 0., 0., 0., 20., 0., 0., 20., 0., 4., 0., 0., 4. ]
+   -
+      mat: !!opencv-matrix
+         rows: 4
+         cols: 3
+         dt: d
+         data: [ 0., 0., 0., 0., 20., 0., 0., 20., 4., 0., 0., 4. ]

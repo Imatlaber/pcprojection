@@ -1,0 +1,97 @@
+/* Copyright (c) AutoNavi - All Rights Reserved
+ * Author: shuo <shuo@alibaba-inc.com>
+ * description: lcm type for velodyne
+ */
+
+package had;
+
+struct block_lidar_t
+{
+    int64_t utime;
+
+    int32_t nplanes;
+    int32_t nranges;
+    int32_t total_points;
+
+    // assert that total_points = nplanes*nranges
+    float ranges[total_points];
+
+    // the angle that each plane starts from in the laser's own
+    // co-ordinate frame
+    float rad0;
+
+    // number of radians between each successive sample (horizontal)
+    float radstep;
+    // radians between two vertical points
+    float vert_radstep;
+
+    // Field of view of the block lidar's cone
+    float fov;
+}
+
+//describes one kind of data (e.g. color, intensity, range) in the pointcloud
+struct pointfield_t
+{
+    const int8_t INT8 = 1;
+    const int8_t UINT8 = 2;
+    const int8_t INT16 = 3;
+    const int8_t UINT16 = 4;
+    const int8_t INT32 = 5;
+    const int8_t UINT32  = 6;
+    const int8_t FLOAT32 = 7;
+    const int8_t FLOAT64 = 8;
+
+    string name;     // Name of field
+    int32_t offset;    // Offset from start of point struct
+    int8_t  datatype;  // Datatype enumeration, see above
+    int32_t count;     // How many elements in the field
+}
+
+struct point3_t
+{
+    double x;
+    double y;
+    double z;
+    
+    //TODO: to create a lighter dataype;
+    int8_t blocked;    
+}
+
+struct pointcloud_t 
+{
+    header_t header;
+    string coord_frame;
+	hardware_health_t health;
+	elapsed_time_t time_delay;
+
+   //If the cloud is unordered, height=1, width=length of =point cloud
+    int32_t height;
+    int32_t  width;
+
+    // fields can represent intensity, range, color etc.
+    int32_t num_fields;
+    pointfield_t fields[num_fields];
+    int32_t  point_step;        // Length of a point in bytes
+    int32_t  row_step;          // Length of a row in bytes
+
+    //all kinds of field adat are flattended to a single array
+    int32_t size;
+    byte data[size];            // Actual point data, size is (row_step*height)
+    // This is compressed using google snappy
+    boolean is_dense;           // True if there are no invalid points
+}
+
+struct byteData_t
+{
+    int64_t utime;
+    int32_t size;
+    byte data[size];
+}
+
+struct byteDataArray_t
+{
+    int64_t utime;
+    string coord_frame;
+    int32_t size;
+    byteData_t data[size];
+}

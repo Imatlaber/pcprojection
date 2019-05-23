@@ -1,0 +1,25 @@
+/* Copyright (c) AutoNavi - All Rights Reserved
+ * Author: shuo <shuo@alibaba-inc.com>
+ * description: hardware_health 
+ */
+
+package had;
+
+struct header_t
+{
+    int64_t utime;   	// time in microsec
+    string sender;   	// process sending message
+}
+
+struct hardware_health_t
+{
+    header_t header;
+    const int8_t OK         = 0;
+    const int8_t WARN       = 1;
+    const int8_t ERROR      = 2;
+    const int8_t STALE      = 3;
+    const int8_t UNKNOWN    = 4;
+    int8_t status;
+    string message;         // extra info if necessary
+    string hardware_id;     // unique hardware id
+}
